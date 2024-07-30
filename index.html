@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eat Right Food</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#Home">
+        <img src="store.png" width="30px" alt="icon">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="#Menu">Menu</a>
+            <a class="nav-item nav-link" href="#Checkout">Cart</a>
+        </div>
+    </div>
+</nav>
+
+<section id="Menu" class="mt-4">
+    <div class="container">
+        <h1 class="text-center">Menu</h1>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <img class="card-img-top img-thumbnail" src="https://static01.nyt.com/images/2024/01/10/multimedia/ND-Takoyaki-wfhg/ND-Takoyaki-wfhg-threeByTwoMediumAt2X.jpg?width=1280&quality=75&auto=webp" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Takoyaki</h5>
+                        <p class="card-text">Crisp on the outside, creamy on the inside, a little bit savory and a little bit sweet, takoyaki are a popular street food in Japan</p>
+                        <p>Price: $6</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card" >
+                    <img class="card-img-top img-thumbnail" src="https://www.laboiteny.com/cdn/shop/articles/27_-_Salmon_Sashimi.jpg?v=1614364688" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Sashimi</h5>
+                        <p class="card-text">a Japanese delicacy consisting of fresh raw fish or meat sliced into thin pieces and often eaten with soy sauce</p>
+                        <p>Price: $4</p>
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="checkout">
+        <h2>Total: $<span id="totalPrice">0</span></h2>
+    </section>
+
+
+<script>
+    let total = 0;
+    let prices = {
+        "Sashimi" : 4,
+        "Takoyaki" :6,
+    };
+   const quantities = {
+       "Sashimi" : 0,
+       "Takoyaki": 0,
+   }
+
+   function updateTotal() {
+       total = prices["Sashimi"]*quantities["Sashimi"] + prices["Takoyaki"]*quantities["Takoyaki"];
+       document.getElementById("totalPrice"). textContent = total;
+   }
+
+   document.querySelectorAll(".btn-primary").forEach(button => {
+       button.addEventListener("click",function () {
+           const item = this.closest(".card").querySelector(".card-title").textContent;
+           quantities[item]++;
+           updateTotal();
+       })
+   })
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
